@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import supabase from "../config/supabase-admin.ts";
+import { supabase } from "../config/supabase-admin";
 
 interface UserWithProfile {
   id: string;

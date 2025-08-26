@@ -1,6 +1,6 @@
-import { seedCategories } from "./categories.ts";
-import { seedProducts } from "./products.ts";
-import { seedUsersAndProfiles } from "./users-profiles.ts";
+import { seedCategories } from "./categories";
+import { seedProducts } from "./products";
+import { seedUsersAndProfiles } from "./users-profiles";
 
 // command used to seed db
 // npx ts-node seed/main.ts

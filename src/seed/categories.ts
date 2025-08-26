@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import supabase from "../config/supabase-admin.ts";
+import { supabase } from "../config/supabase-admin";
 
 interface Category {
   id: string;
@@ -15,7 +15,7 @@ export async function seedCategories(count = 10): Promise<Category[]> {
   while (categories.length < count) {
     let name = faker.commerce.department();
     while (usedNames.has(name)) {
-      name = faker.commerce.department(); // reroll until unique
+      name = faker.commerce.department();
     }
     usedNames.add(name);
 
