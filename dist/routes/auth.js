@@ -1,5 +1,13 @@
 import { Router } from "express";
-import { forgotPassword, login, logout, profile, register, resetPassword, updateProfile, } from "../controllers/auth";
+import {
+  forgotPassword,
+  login,
+  logout,
+  profile,
+  register,
+  resetPassword,
+  updateProfile,
+} from "../controllers/auth";
 import { isAuth } from "../middlewares/isAuth";
 const router = Router();
 router.post("/signup", register);

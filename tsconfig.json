@@ -11,7 +11,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
-    "declaration":true,
+    "declaration": true,
     "emitDeclarationOnly": true,
     "allowImportingTsExtensions": true,
     "sourceMap": true
