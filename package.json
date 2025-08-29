@@ -9,7 +9,7 @@
     "start": "node dist/server.js",
     "prettier:fix": "prettier --write .",
     "prettier:check": "prettier --check .",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint src --ext .ts"
   },
   "keywords": [],
   "author": "soffsin",

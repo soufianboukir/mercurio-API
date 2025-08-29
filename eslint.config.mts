@@ -7,6 +7,7 @@ export default defineConfig([
   {
     files: ["**/*.{js,mjs,cjs,ts,mts,cts}"],
     plugins: { js },
+    ignores: ["dist/**", "**/*.d.ts"],
     extends: ["js/recommended"],
     languageOptions: { 
       globals: {
