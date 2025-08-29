@@ -1,4 +1,3 @@
-
 import type { Request, Response } from "express";
 import { supabase as supabaseAdmin } from "../config/supabase-admin.ts";
 
@@ -14,8 +13,7 @@ export const getProducts = async (req: Request, res: Response) => {
       .from("products")
       .select("*", { count: "exact" })
       .order("created_at", { ascending: false })
-      .range(from, to)
-      
+      .range(from, to);
 
     if (error) throw error;
 
@@ -34,11 +32,7 @@ export const getProductById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    const { data, error } = await supabaseAdmin
-      .from("products")
-      .select("*")
-      .eq("id", id)
-      .single();
+    const { data, error } = await supabaseAdmin.from("products").select("*").eq("id", id).single();
 
     if (error) throw error;
 
@@ -46,29 +40,29 @@ export const getProductById = async (req: Request, res: Response) => {
 
     res.json(data);
   } catch {
-        res.status(500).json({ error: "Server error" });
+    res.status(500).json({ error: "Server error" });
   }
 };
 
 // POST /products (admin only)
 
-export const createProduct = async (req:Request, res: Response) => {
-    try {
-      const { name, description, price, stock, category_id, image } = req.body;
-  
-      const { data, error } = await supabaseAdmin
-        .from("products")
-        .insert([{ name, description, price, stock, category_id, image }])
-        .select()
-        .single();
-  
-      if (error) throw error;
-  
-      res.status(201).json(data);
-    } catch {
-      res.status(500).json({message:  "Server error" });
-    }
-  };
+export const createProduct = async (req: Request, res: Response) => {
+  try {
+    const { name, description, price, stock, category_id, image } = req.body;
+
+    const { data, error } = await supabaseAdmin
+      .from("products")
+      .insert([{ name, description, price, stock, category_id, image }])
+      .select()
+      .single();
+
+    if (error) throw error;
+
+    res.status(201).json(data);
+  } catch {
+    res.status(500).json({ message: "Server error" });
+  }
+};
 
 // PUT /products/:id (admin only)
 export const updateProduct = async (req: Request, res: Response) => {
@@ -97,14 +91,11 @@ export const deleteProduct = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    const { error } = await supabaseAdmin
-      .from("products")
-      .delete()
-      .eq("id", id);
+    const { error } = await supabaseAdmin.from("products").delete().eq("id", id);
 
     if (error) throw error;
 
-    res.status(200).json({"message": "Product deleted successfully"});
+    res.status(200).json({ message: "Product deleted successfully" });
   } catch {
     res.status(500).json({ error: "Server error" });
   }

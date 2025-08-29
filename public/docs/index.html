@@ -69,8 +69,15 @@
   </head>
   <body>
     <h1>Mercurio API Documentation</h1>
-    <h2>Base URL: <code>https://mercuirio-api/api</code></h2>
-
+    <h2>Base URL: <code>https://mercurio-api.vercel.app/api </code></h2>
+    <p>
+      <strong>Note:</strong> Routes marked as <code>(Admin only)</code> or
+      <code>(Requires auth)</code> require authentication. Requests to these routes must include a
+      valid access token in the request header as follows:
+    </p>
+    <pre>
+    Authorization: Bearer &lt;access_token&gt;
+    </pre>
     <!-- AUTH ROUTES -->
     <section>
       <h2>Auth</h2>
@@ -176,9 +183,6 @@
       <pre>{ "message": "User and profile deleted successfully" }</pre>
     </section>
 
-
-
-
     <section>
       <h2>Products</h2>
 
@@ -198,8 +202,6 @@
         }
       </pre>
 
-
-
       <div><span class="method GET">GET</span><span class="endpoint">/products/68</span></div>
       <p>Get products details</p>
       <p>Params:</p>
@@ -218,9 +220,10 @@
         }
       </pre>
 
-
-
-      <div><span class="method POST">POST</span><span class="endpoint">/products/create</span>( only admins)</div>
+      <div>
+        <span class="method POST">POST</span><span class="endpoint">/products/create</span>( only
+        admins)
+      </div>
       <p>Create new product (all fields are required)</p>
       <p>body:</p>
       <pre>
@@ -245,8 +248,9 @@
         }
       </pre>
 
-
-      <div><span class="method PUT">PUT</span><span class="endpoint">/products/:id</span>( only admins)</div>
+      <div>
+        <span class="method PUT">PUT</span><span class="endpoint">/products/:id</span>( only admins)
+      </div>
       <p>Update product details</p>
       <p>body:</p>
       <pre>
@@ -271,9 +275,10 @@
         }
       </pre>
 
-
-
-      <div><span class="method DELETE">DELETE</span><span class="endpoint">/products/68</span>(only admins)</div>
+      <div>
+        <span class="method DELETE">DELETE</span><span class="endpoint">/products/68</span>(only
+        admins)
+      </div>
       <p>Update product details</p>
       <p>params:</p>
       <pre>
@@ -286,10 +291,10 @@
         }
       </pre>
 
-
-
-
-      <div><span class="method PUT">GET</span><span class="endpoint">/products/category/:category_id</span></div>
+      <div>
+        <span class="method GET">GET</span
+        ><span class="endpoint">/products/category/:category_id</span>
+      </div>
       <p>Get products by category</p>
       <p>params:</p>
       <pre>
@@ -307,11 +312,10 @@
         }
       </pre>
 
-
-
-
-      <div><span class="method PUT">GET</span><span class="endpoint">/products/search/withQuery</span></div>
-      <p>Get products by category</p>
+      <div>
+        <span class="method GET">GET</span><span class="endpoint">/products/search/withQuery</span>
+      </div>
+      <p>Search products by keyword</p>
       <p>body:</p>
       <pre>
         /products/search/withQuery?query=keyword?page=1

@@ -9,11 +9,11 @@ export default defineConfig([
     plugins: { js },
     ignores: ["dist/**", "**/*.d.ts"],
     extends: ["js/recommended"],
-    languageOptions: { 
+    languageOptions: {
       globals: {
         ...globals.node,
-        ...globals.browser
-      }
+        ...globals.browser,
+      },
     },
   },
   tseslint.configs.recommended,

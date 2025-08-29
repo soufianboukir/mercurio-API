@@ -1,6 +1,14 @@
 import { Router } from "express";
 import { isAdmin } from "../middlewares/isAdmin.ts";
-import { createProduct, deleteProduct, getProductById, getProducts, getProductsByCategory, searchProducts, updateProduct } from "../controllers/products.ts";
+import {
+  createProduct,
+  deleteProduct,
+  getProductById,
+  getProducts,
+  getProductsByCategory,
+  searchProducts,
+  updateProduct,
+} from "../controllers/products.ts";
 
 const router = Router();
 
