@@ -48,13 +48,13 @@ The project is structured for scalability and clean code separation, following M
 
 ## Products
 
-- `GET /products` → List all products
+- `GET /all?page=1` → List all products
 - `GET /products/:id` → Get product details
-- `POST /products` → Create product (admin only)
+- `POST /create` → Create product (admin only)
 - `PUT /products/:id` → Update product (admin only)
 - `DELETE /products/:id` → Delete product (admin only)
-- `GET /products/category/:categoryId` → List products by category
-- `GET /products/search?query=keyword` → Search products by name or keyword
+- `GET /products/category/:categoryId?page=1` → List products by category
+- `GET /products/search/wirhQuery?query=keyword&page=1` → Search products by name or keyword
 
 ## Categories
 

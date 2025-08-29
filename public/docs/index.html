@@ -175,5 +175,158 @@
       <p>Response:</p>
       <pre>{ "message": "User and profile deleted successfully" }</pre>
     </section>
+
+
+
+
+    <section>
+      <h2>Products</h2>
+
+      <div><span class="method GET">GET</span><span class="endpoint">/products/all</span></div>
+      <p>List all products (paginated, 10 per page)</p>
+      <p>Query params:</p>
+      <pre>?page=1</pre>
+      <p>Response:</p>
+      <pre>
+        {
+          "page": 1,
+          "totalPages": 5,
+          "totalProducts": 42,
+          "products": [
+            { "id": "...", "name": "...", "description": "....." }
+          ]
+        }
+      </pre>
+
+
+
+      <div><span class="method GET">GET</span><span class="endpoint">/products/68</span></div>
+      <p>Get products details</p>
+      <p>Params:</p>
+      <pre>/products/:id</pre>
+      <p>Response:</p>
+      <pre>
+        {
+          "id": 68,
+          "created_at": "2025-08-24T13:27:52.561+00:00",
+          "name": "Oriental Wooden Fish",
+          "description": "Professional-grade Mouse perfect for functional training and recreational use",
+          "price": 361.29,
+          "stock": 67,
+          "category_id": 28,
+          "image": "https://loremflickr.com/1005/1882/product?lock=4297990461563116"
+        }
+      </pre>
+
+
+
+      <div><span class="method POST">POST</span><span class="endpoint">/products/create</span>( only admins)</div>
+      <p>Create new product (all fields are required)</p>
+      <p>body:</p>
+      <pre>
+        {
+          "name": "Wireless Headphones",
+          "description": "High-quality wireless headphones with noise cancellation and long battery life.",
+          "price": 8.99,
+          "stock": 50,
+          "category_id": 21,
+          "image": "https://example.com/images/wireless-headphones.jpg"
+        }
+      </pre>
+      <p>Response:</p>
+      <pre>
+        {
+          "name": "Wireless Headphones",
+          "description": "High-quality wireless headphones with noise cancellation and long battery life.",
+          "price": 8.99,
+          "stock": 50,
+          "category_id": 21,
+          "image": "https://example.com/images/wireless-headphones.jpg"
+        }
+      </pre>
+
+
+      <div><span class="method PUT">PUT</span><span class="endpoint">/products/:id</span>( only admins)</div>
+      <p>Update product details</p>
+      <p>body:</p>
+      <pre>
+        {
+          "name": "Wireless Headphones",
+          "description": "High-quality wireless headphones with noise cancellation and long battery life.",
+          "price": 8.99,
+          "stock": 50,
+          "category_id": 21,
+          "image": "https://example.com/images/wireless-headphones.jpg"
+        }
+      </pre>
+      <p>Response:</p>
+      <pre>
+        {
+          "name": "Wireless Headphones",
+          "description": "High-quality wireless headphones with noise cancellation and long battery life.",
+          "price": 8.99,
+          "stock": 50,
+          "category_id": 21,
+          "image": "https://example.com/images/wireless-headphones.jpg"
+        }
+      </pre>
+
+
+
+      <div><span class="method DELETE">DELETE</span><span class="endpoint">/products/68</span>(only admins)</div>
+      <p>Update product details</p>
+      <p>params:</p>
+      <pre>
+        /products/:id:
+      </pre>
+      <p>Response:</p>
+      <pre>
+        {
+          "message": "Product deleted successfully"
+        }
+      </pre>
+
+
+
+
+      <div><span class="method PUT">GET</span><span class="endpoint">/products/category/:category_id</span></div>
+      <p>Get products by category</p>
+      <p>params:</p>
+      <pre>
+        /products/category/:category_id?page=1
+      </pre>
+      <p>Response:</p>
+      <pre>
+        {
+          page,
+          totalProducts: 8,
+          totalPages: 6,
+          "products": [
+            { "id": "...", "name": "...", "description": "....." }
+          ]
+        }
+      </pre>
+
+
+
+
+      <div><span class="method PUT">GET</span><span class="endpoint">/products/search/withQuery</span></div>
+      <p>Get products by category</p>
+      <p>body:</p>
+      <pre>
+        /products/search/withQuery?query=keyword?page=1
+      </pre>
+      <p>Response:</p>
+      <pre>
+        {
+          page,
+          totalProducts: 8,
+          totalPages: 6,
+          "products": [
+            { "id": "...", "name": "...", "description": "....." }
+          ]
+        }
+      </pre>
+    </section>
   </body>
 </html>
