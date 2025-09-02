@@ -12,14 +12,6 @@ import {
 
 const router = Router();
 
-// - `GET /products` → List all products
-// - `GET /products/:id` → Get product details
-// - `POST /products` → Create product (admin only)
-// - `PUT /products/:id` → Update product (admin only)
-// - `DELETE /products/:id` → Delete product (admin only)
-// - `GET /products/category/:categoryId` → List products by category
-// - `GET /products/search?query=keyword` → Search products by name or keyword
-
 router.get("/all", getProducts);
 router.get("/:id", getProductById);
 router.post("/create", isAdmin, createProduct);
