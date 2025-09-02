@@ -74,7 +74,7 @@ export const updateCategory = async (req: Request, res: Response) => {
       return res.status(404).json({ error: "Category not found" });
     }
 
-    res.json(data);
+    res.json({data, message: "Category updated successfully"});
   } catch {
     res.status(500).json({ error: "Server error" });
   }

@@ -332,5 +332,119 @@
         }
       </pre>
     </section>
+
+
+
+    <section>
+      <h2>Categories</h2>
+
+      <div><span class="method GET">GET</span><span class="endpoint">/categories/all</span></div>
+      <p>List all categories</p>
+      <p>Response:</p>
+      <pre>
+        [
+          {
+              "id": 21,
+              "created_at": "2025-08-24T11:33:43.934+00:00",
+              "name": "Garden",
+              "description": "Discover the responsible new Hat with an exciting mix of Ceramic ingredients"
+          },
+          {
+              "id": 22,
+              "created_at": "2025-08-24T11:33:44.115+00:00",
+              "name": "Computers",
+              "description": "Discover the damaged new Ball with an exciting mix of Granite ingredients"
+          },
+          ...
+        ]
+      </pre>
+
+
+      <div><span class="method GET">GET</span><span class="endpoint">/categories/:id</span></div>
+      <p>List category by id</p>
+      <p>Endpoint:</p>
+      <pre>
+        /categories/22
+      </pre>
+      <p>Response:</p>
+      <pre>
+        {
+          "id": 22,
+          "created_at": "2025-08-24T11:33:44.115+00:00",
+          "name": "Computers",
+          "description": "Discover the damaged new Ball with an exciting mix of Granite ingredients"
+        },
+      </pre>
+
+
+
+      <div><span class="method POST">POST</span><span class="endpoint">/categories/create</span>(only
+        admins)</div>
+      <p>Create new category</p>
+      <p>body:</p>
+      <pre>
+        {
+          name:"Phones",
+          description:"Explore the latest Phones designed with cutting-edge technology, sleek design, and powerful performance all in one place."
+        }
+      </pre>
+      <p>Response:</p>
+      <pre>
+        {
+          "data": {
+              "id": 33,
+              "created_at": "2025-09-02T11:28:35.094548+00:00",
+              "name": "Phones",
+              "description": "Explore the latest Phones designed with cutting-edge technology, sleek design, and powerful performance all in one place."
+          },
+          "message": "New category created successfully"
+        }
+      </pre>
+
+
+
+      <div><span class="method PUT">PUT</span><span class="endpoint">/categories/:id</span>(only
+        admins)</div>
+      <p>Update existing category</p>
+      <p>body:</p>
+      <pre>
+        /categories/33
+      </pre>
+      <pre>
+        {
+          name:"Phones updated",
+          description:"Explore the latest Phones designed with cutting-edge technology, sleek design, and powerful performance all in one place."
+        }
+      </pre>
+      <p>Response:</p>
+      <pre>
+        {
+          "data": {
+              "id": 33,
+              "created_at": "2025-09-02T11:28:35.094548+00:00",
+              "name":"Phones updated",
+              "description":"Explore the latest Phones designed with cutting-edge technology, sleek design, and powerful performance all in one place."
+          },
+          "message": "Category updated successfully"
+        }
+      </pre>
+
+
+
+
+      <div><span class="method DELETE">DELETE</span><span class="endpoint">/categories/:id</span>(only
+        admins)</div>
+      <p>Delete existing category</p>
+      <p>Endpoint:</p>
+      <pre>
+        /categories/33
+      </pre>
+      <p>Response:</p>
+      <pre>
+        {
+          "message": "Category deleted successfully"
+        }
+      </pre>
+    </section>
   </body>
 </html>
