@@ -50,7 +50,7 @@ export const createCategory = async (req: Request, res: Response) => {
 
     if (error) throw error;
 
-    res.status(201).json({data, message:"New category created successfully"});
+    res.status(201).json({ data, message: "New category created successfully" });
   } catch {
     res.status(500).json({ error: "Server error" });
   }
@@ -74,7 +74,7 @@ export const updateCategory = async (req: Request, res: Response) => {
       return res.status(404).json({ error: "Category not found" });
     }
 
-    res.json({data, message: "Category updated successfully"});
+    res.json({ data, message: "Category updated successfully" });
   } catch {
     res.status(500).json({ error: "Server error" });
   }
@@ -84,10 +84,7 @@ export const deleteCategory = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    const { error } = await supabaseAdmin
-      .from("categories")
-      .delete()
-      .eq("id", id);
+    const { error } = await supabaseAdmin.from("categories").delete().eq("id", id);
 
     if (error) throw error;
 

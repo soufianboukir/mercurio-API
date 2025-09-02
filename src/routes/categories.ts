@@ -1,6 +1,12 @@
 import { Router } from "express";
 import { isAdmin } from "../middlewares/isAdmin.ts";
-import { createCategory, deleteCategory, getCategories, getCategoryById, updateCategory } from "../controllers/categories.ts";
+import {
+  createCategory,
+  deleteCategory,
+  getCategories,
+  getCategoryById,
+  updateCategory,
+} from "../controllers/categories.ts";
 
 const router = Router();
 
