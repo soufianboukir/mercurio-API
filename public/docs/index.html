@@ -1,450 +1,96 @@
 <!doctype html>
 <html>
   <head>
-    <title>Mercurio API Documentation</title>
+    <title>Mercurio API Docs</title>
     <style>
-      body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        padding: 2rem;
-        line-height: 1.6;
-        background: #fdfdfd;
-        color: #333;
-      }
-      h1 {
-        border-bottom: 3px solid #4a90e2;
-        padding-bottom: 0.5rem;
-      }
-      h2 {
-        margin-top: 2rem;
-        color: #444;
-        border-left: 5px solid #4a90e2;
-        padding-left: 0.5rem;
-      }
-      .endpoint {
-        display: inline-block;
-        font-family: monospace;
-        padding: 0.3rem 0.6rem;
-        border-radius: 6px;
-        font-weight: bold;
-        font-size: 20px;
-        margin-bottom: 0.3rem;
-      }
-      .method {
-        padding: 0.3rem 0.6rem;
-        border-radius: 6px;
-        font-weight: bold;
-        color: white;
-        margin-right: 0.5rem;
-      }
-      .GET {
-        background-color: #2d9cdb;
-      }
-      .POST {
-        background-color: #27ae60;
-      }
-      .PUT {
-        background-color: #f39c12;
-      }
-      .DELETE {
-        background-color: #e74c3c;
-      }
-      pre {
-        background: #e3e3e3;
-        padding: 1rem;
-        border-radius: 6px;
-        font-size: 17px;
-        overflow-x: auto;
-        margin-top: 0.5rem;
-      }
-      section {
-        margin-bottom: 2rem;
-      }
-      code {
-        background: #eee;
-        padding: 0.2rem 0.4rem;
-        font-size: 18px;
-        border-radius: 4px;
-      }
+      body { font-family: "Segoe UI", Tahoma, sans-serif; padding: 2rem; background: #fdfdfd; color: #333; line-height: 1.5; }
+      h1 { border-bottom: 3px solid #4a90e2; }
+      h2 { margin-top: 2rem; border-left: 4px solid #4a90e2; padding-left: .5rem; }
+      .endpoint { font-family: monospace; font-size: 16px; font-weight: bold; margin-bottom: .3rem; display: inline-block; }
+      .method { padding: .2rem .5rem; border-radius: 4px; color: #fff; font-weight: bold; margin-right: .4rem; }
+      .GET { background: #2d9cdb; } .POST { background: #27ae60; } .PUT { background: #f39c12; } .DELETE { background: #e74c3c; }
+      pre { background: #f0f0f0; padding: .6rem; border-radius: 5px; font-size: 14px; overflow-x: auto; margin: .3rem 0 .8rem 0; }
+      code { background: #eee; padding: .1rem .3rem; border-radius: 4px; }
     </style>
   </head>
   <body>
-    <h1>Mercurio API Documentation</h1>
-    <h2>Base URL: <code>https://mercurio-api.vercel.app/api </code></h2>
-    <p>
-      <strong>Note:</strong> Routes marked as <code>(Admin only)</code> or
-      <code>(Requires auth)</code> require authentication. Requests to these routes must include a
-      valid access token in the request header as follows:
-    </p>
-    <pre>
-    Authorization: Bearer &lt;access_token&gt;
-    </pre>
-    <!-- AUTH ROUTES -->
-    <section>
-      <h2>Auth</h2>
+    <h1>Mercurio API Docs</h1>
+    <h2>Base URL: <code>https://mercurio-api.vercel.app/api</code></h2>
+    <p><b>Auth:</b> Use header <code>Authorization: Bearer &lt;token&gt;</code> for protected routes.</p>
 
-      <div><span class="method POST">POST</span><span class="endpoint">/auth/signup</span></div>
-      <p>Register a new user</p>
-      <pre>
-{
-  "email": "user@example.com",
-  "password": "123456"
-}</pre
-      >
+    <!-- AUTH -->
+    <h2>Auth</h2>
+    <p><span class="method POST">POST</span><span class="endpoint">/auth/signup</span></p>
+    <pre>{ "email":"user@example.com","password":"123456" }</pre>
 
-      <div><span class="method POST">POST</span><span class="endpoint">/auth/login</span></div>
-      <p>Login and get access token</p>
-      <pre>
-{
-  "email": "user@example.com",
-  "password": "123456"
-}</pre
-      >
-      <p>Response:</p>
-      <pre>
-{
-  "access_token": "...",
-  "user": { "id": "...", "email": "..." }
-}</pre
-      >
+    <p><span class="method POST">POST</span><span class="endpoint">/auth/login</span></p>
+    <pre>{ "email":"user@example.com","password":"123456" }
+Response: { "access_token":"...", "user":{ "id":"..","email":".." }}</pre>
 
-      <div><span class="method POST">POST</span><span class="endpoint">/auth/logout</span></div>
-      <p>Logout current user (requires <code>Authorization</code> header)</p>
+    <p><span class="method POST">POST</span><span class="endpoint">/auth/logout</span></p>
+    <pre>{ "message":"Logged out" }</pre>
 
-      <div><span class="method GET">GET</span><span class="endpoint">/auth/profile</span></div>
-      <p>Get logged-in user profile (requires <code>Authorization</code> header)</p>
+    <p><span class="method GET">GET</span><span class="endpoint">/auth/profile</span></p>
+    <pre>{ "id":"..","email":"user@example.com","role":"student" }</pre>
 
-      <div><span class="method PUT">PUT</span><span class="endpoint">/auth/profile</span></div>
-      <p>Update logged-in user profile</p>
-      <pre>
-{
-  "full_name": "New Name",
-  "role": "student"
-}</pre
-      >
+    <p><span class="method PUT">PUT</span><span class="endpoint">/auth/profile</span></p>
+    <pre>{ "full_name":"New Name" } → { "id":"..","full_name":"New Name" }</pre>
 
-      <div>
-        <span class="method POST">POST</span><span class="endpoint">/auth/forgot-password</span>
-      </div>
-      <p>Request password reset (reset link sent to email)</p>
-      <pre>
-{
-  "email": "user@example.com"
-}</pre
-      >
+    <p><span class="method POST">POST</span><span class="endpoint">/auth/forgot-password</span></p>
+    <pre>{ "email":"user@example.com" }</pre>
 
-      <div>
-        <span class="method PUT">PUT</span><span class="endpoint">/auth/reset-password</span>
-      </div>
-      <p>Change password (requires token from reset link)</p>
-      <pre>
-{
-  "access_token": "token-from-url",
-  "new_password": "newStrongPass"
-}</pre
-      >
-    </section>
+    <p><span class="method PUT">PUT</span><span class="endpoint">/auth/reset-password</span></p>
+    <pre>{ "access_token":"..","new_password":"newPass123" }</pre>
 
-    <!-- USERS ROUTES -->
-    <section>
-      <h2>Users (Admin only)</h2>
+    <!-- USERS -->
+    <h2>Users (Admin)</h2>
+    <p><span class="method GET">GET</span><span class="endpoint">/users/all?page=1</span></p>
+    <pre>{ "page":1,"users":[{ "id":"..","email":".." }] }</pre>
 
-      <div><span class="method GET">GET</span><span class="endpoint">/users/all</span></div>
-      <p>List all users (paginated, 10 per page)</p>
-      <p>Query params:</p>
-      <pre>?page=1</pre>
-      <p>Response:</p>
-      <pre>
-{
-  "page": 1,
-  "pageSize": 10,
-  "totalPages": 5,
-  "totalUsers": 42,
-  "users": [
-    { "user_id": "...", "email": "...", "role": "student" }
-  ]
-}</pre
-      >
+    <p><span class="method GET">GET</span><span class="endpoint">/users/:id</span></p>
+    <pre>{ "id":"..","email":"..","role":"student" }</pre>
 
-      <div><span class="method GET">GET</span><span class="endpoint">/users/:id</span></div>
-      <p>Get user details by ID</p>
-      <pre>
-{
-  "user_id": "...",
-  "email": "user@example.com",
-  "full_name": "Soufian Boukir",
-  "role": "student",
-  "created_at": "2025-01-01T12:00:00Z"
-}</pre
-      >
+    <p><span class="method DELETE">DELETE</span><span class="endpoint">/users/:id</span></p>
+    <pre>{ "message":"User deleted successfully" }</pre>
 
-      <div><span class="method DELETE">DELETE</span><span class="endpoint">/users/:id</span></div>
-      <p>Delete user and related profile</p>
-      <p>Response:</p>
-      <pre>{ "message": "User and profile deleted successfully" }</pre>
-    </section>
+    <!-- PRODUCTS -->
+    <h2>Products</h2>
+    <p><span class="method GET">GET</span><span class="endpoint">/products/all?page=1</span></p>
+    <pre>{ "page":1,"products":[{ "id":1,"name":"Product A" }] }</pre>
 
-    <section>
-      <h2>Products</h2>
+    <p><span class="method GET">GET</span><span class="endpoint">/products/:id</span></p>
+    <pre>{ "id":68,"name":"Wireless Headphones","price":8.99 }</pre>
 
-      <div><span class="method GET">GET</span><span class="endpoint">/products/all</span></div>
-      <p>List all products (paginated, 10 per page)</p>
-      <p>Query params:</p>
-      <pre>?page=1</pre>
-      <p>Response:</p>
-      <pre>
-        {
-          "page": 1,
-          "totalPages": 5,
-          "totalProducts": 42,
-          "products": [
-            { "id": "...", "name": "...", "description": "....." }
-          ]
-        }
-      </pre>
+    <p><span class="method POST">POST</span><span class="endpoint">/products/create</span> (Admin)</p>
+    <pre>{ "name":"Phone","price":299,"stock":20,"category_id":21 }</pre>
 
-      <div><span class="method GET">GET</span><span class="endpoint">/products/68</span></div>
-      <p>Get products details</p>
-      <p>Params:</p>
-      <pre>/products/:id</pre>
-      <p>Response:</p>
-      <pre>
-        {
-          "id": 68,
-          "created_at": "2025-08-24T13:27:52.561+00:00",
-          "name": "Oriental Wooden Fish",
-          "description": "Professional-grade Mouse perfect for functional training and recreational use",
-          "price": 361.29,
-          "stock": 67,
-          "category_id": 28,
-          "image": "https://loremflickr.com/1005/1882/product?lock=4297990461563116"
-        }
-      </pre>
+    <p><span class="method PUT">PUT</span><span class="endpoint">/products/:id</span> (Admin)</p>
+    <pre>{ "name":"Phone Updated","stock":15 }</pre>
 
-      <div>
-        <span class="method POST">POST</span><span class="endpoint">/products/create</span>( only
-        admins)
-      </div>
-      <p>Create new product (all fields are required)</p>
-      <p>body:</p>
-      <pre>
-        {
-          "name": "Wireless Headphones",
-          "description": "High-quality wireless headphones with noise cancellation and long battery life.",
-          "price": 8.99,
-          "stock": 50,
-          "category_id": 21,
-          "image": "https://example.com/images/wireless-headphones.jpg"
-        }
-      </pre>
-      <p>Response:</p>
-      <pre>
-        {
-          "name": "Wireless Headphones",
-          "description": "High-quality wireless headphones with noise cancellation and long battery life.",
-          "price": 8.99,
-          "stock": 50,
-          "category_id": 21,
-          "image": "https://example.com/images/wireless-headphones.jpg"
-        }
-      </pre>
+    <p><span class="method DELETE">DELETE</span><span class="endpoint">/products/:id</span> (Admin)</p>
+    <pre>{ "message":"Product deleted successfully" }</pre>
 
-      <div>
-        <span class="method PUT">PUT</span><span class="endpoint">/products/:id</span>( only admins)
-      </div>
-      <p>Update product details</p>
-      <p>body:</p>
-      <pre>
-        {
-          "name": "Wireless Headphones",
-          "description": "High-quality wireless headphones with noise cancellation and long battery life.",
-          "price": 8.99,
-          "stock": 50,
-          "category_id": 21,
-          "image": "https://example.com/images/wireless-headphones.jpg"
-        }
-      </pre>
-      <p>Response:</p>
-      <pre>
-        {
-          "name": "Wireless Headphones",
-          "description": "High-quality wireless headphones with noise cancellation and long battery life.",
-          "price": 8.99,
-          "stock": 50,
-          "category_id": 21,
-          "image": "https://example.com/images/wireless-headphones.jpg"
-        }
-      </pre>
+    <p><span class="method GET">GET</span><span class="endpoint">/products/category/:category_id?page=1</span></p>
+    <pre>{ "page":1,"products":[{ "id":1,"name":"Product A" }] }</pre>
 
-      <div>
-        <span class="method DELETE">DELETE</span><span class="endpoint">/products/68</span>(only
-        admins)
-      </div>
-      <p>Update product details</p>
-      <p>params:</p>
-      <pre>
-        /products/:id:
-      </pre>
-      <p>Response:</p>
-      <pre>
-        {
-          "message": "Product deleted successfully"
-        }
-      </pre>
+    <p><span class="method GET">GET</span><span class="endpoint">/products/search/withQuery?query=phone&page=1</span></p>
+    <pre>{ "page":1,"products":[{ "id":2,"name":"Smartphone" }] }</pre>
 
-      <div>
-        <span class="method GET">GET</span
-        ><span class="endpoint">/products/category/:category_id</span>
-      </div>
-      <p>Get products by category</p>
-      <p>params:</p>
-      <pre>
-        /products/category/:category_id?page=1
-      </pre>
-      <p>Response:</p>
-      <pre>
-        {
-          page,
-          totalProducts: 8,
-          totalPages: 6,
-          "products": [
-            { "id": "...", "name": "...", "description": "....." }
-          ]
-        }
-      </pre>
+    <!-- CATEGORIES -->
+    <h2>Categories</h2>
+    <p><span class="method GET">GET</span><span class="endpoint">/categories/all</span></p>
+    <pre>[{ "id":21,"name":"Garden" },{ "id":22,"name":"Computers" }]</pre>
 
-      <div>
-        <span class="method GET">GET</span><span class="endpoint">/products/search/withQuery</span>
-      </div>
-      <p>Search products by keyword</p>
-      <p>body:</p>
-      <pre>
-        /products/search/withQuery?query=keyword?page=1
-      </pre>
-      <p>Response:</p>
-      <pre>
-        {
-          page,
-          totalProducts: 8,
-          totalPages: 6,
-          "products": [
-            { "id": "...", "name": "...", "description": "....." }
-          ]
-        }
-      </pre>
-    </section>
+    <p><span class="method GET">GET</span><span class="endpoint">/categories/:id</span></p>
+    <pre>{ "id":22,"name":"Computers" }</pre>
 
+    <p><span class="method POST">POST</span><span class="endpoint">/categories/create</span> (Admin)</p>
+    <pre>{ "name":"Phones","description":"Explore latest Phones..." }</pre>
 
+    <p><span class="method PUT">PUT</span><span class="endpoint">/categories/:id</span> (Admin)</p>
+    <pre>{ "name":"Phones Updated" }</pre>
 
-    <section>
-      <h2>Categories</h2>
-
-      <div><span class="method GET">GET</span><span class="endpoint">/categories/all</span></div>
-      <p>List all categories</p>
-      <p>Response:</p>
-      <pre>
-        [
-          {
-              "id": 21,
-              "created_at": "2025-08-24T11:33:43.934+00:00",
-              "name": "Garden",
-              "description": "Discover the responsible new Hat with an exciting mix of Ceramic ingredients"
-          },
-          {
-              "id": 22,
-              "created_at": "2025-08-24T11:33:44.115+00:00",
-              "name": "Computers",
-              "description": "Discover the damaged new Ball with an exciting mix of Granite ingredients"
-          },
-          ...
-        ]
-      </pre>
-
-
-      <div><span class="method GET">GET</span><span class="endpoint">/categories/:id</span></div>
-      <p>List category by id</p>
-      <p>Endpoint:</p>
-      <pre>
-        /categories/22
-      </pre>
-      <p>Response:</p>
-      <pre>
-        {
-          "id": 22,
-          "created_at": "2025-08-24T11:33:44.115+00:00",
-          "name": "Computers",
-          "description": "Discover the damaged new Ball with an exciting mix of Granite ingredients"
-        },
-      </pre>
-
-
-
-      <div><span class="method POST">POST</span><span class="endpoint">/categories/create</span>(only
-        admins)</div>
-      <p>Create new category</p>
-      <p>body:</p>
-      <pre>
-        {
-          name:"Phones",
-          description:"Explore the latest Phones designed with cutting-edge technology, sleek design, and powerful performance all in one place."
-        }
-      </pre>
-      <p>Response:</p>
-      <pre>
-        {
-          "data": {
-              "id": 33,
-              "created_at": "2025-09-02T11:28:35.094548+00:00",
-              "name": "Phones",
-              "description": "Explore the latest Phones designed with cutting-edge technology, sleek design, and powerful performance all in one place."
-          },
-          "message": "New category created successfully"
-        }
-      </pre>
-
-
-
-      <div><span class="method PUT">PUT</span><span class="endpoint">/categories/:id</span>(only
-        admins)</div>
-      <p>Update existing category</p>
-      <p>body:</p>
-      <pre>
-        /categories/33
-      </pre>
-      <pre>
-        {
-          name:"Phones updated",
-          description:"Explore the latest Phones designed with cutting-edge technology, sleek design, and powerful performance all in one place."
-        }
-      </pre>
-      <p>Response:</p>
-      <pre>
-        {
-          "data": {
-              "id": 33,
-              "created_at": "2025-09-02T11:28:35.094548+00:00",
-              "name":"Phones updated",
-              "description":"Explore the latest Phones designed with cutting-edge technology, sleek design, and powerful performance all in one place."
-          },
-          "message": "Category updated successfully"
-        }
-      </pre>
-
-
-
-
-      <div><span class="method DELETE">DELETE</span><span class="endpoint">/categories/:id</span>(only
-        admins)</div>
-      <p>Delete existing category</p>
-      <p>Endpoint:</p>
-      <pre>
-        /categories/33
-      </pre>
-      <p>Response:</p>
-      <pre>
-        {
-          "message": "Category deleted successfully"
-        }
-      </pre>
-    </section>
+    <p><span class="method DELETE">DELETE</span><span class="endpoint">/categories/:id</span> (Admin)</p>
+    <pre>{ "message":"Category deleted successfully" }</pre>
   </body>
 </html>
