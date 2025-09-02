@@ -2,6 +2,7 @@ import express from "express";
 import authRoutes from "./routes/auth.ts";
 import userRoutes from "./routes/user.ts";
 import productRoutes from "./routes/products.ts";
+import categorieRoutes from "./routes/categories.ts";
 
 import path from "path";
 
@@ -15,5 +16,6 @@ app.get("/docs", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/categories", categorieRoutes);
 
 export default app;
