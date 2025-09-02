@@ -50,7 +50,7 @@ export const createCategory = async (req: Request, res: Response) => {
 
     if (error) throw error;
 
-    res.status(201).json(data);
+    res.status(201).json({data, message:"New category created successfully"});
   } catch {
     res.status(500).json({ error: "Server error" });
   }
