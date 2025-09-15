@@ -34,7 +34,7 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/mongoose": "^5.11.97",
     "eslint": "^9.35.0",
-    "globals": "^16.3.0",
+    "globals": "^16.4.0",
     "jiti": "^2.5.1",
     "prettier": "^3.6.2",
     "ts-node": "^10.9.2",
