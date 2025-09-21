@@ -5,9 +5,9 @@ import { isAuth } from "../middlewares/isAuth.ts";
 
 const router = Router();
 
-router.get("/cart", isAuth, getCart);
-router.post("/cart", isAuth, addToCart);
-router.put("/cart/:itemId", isAuth, updateCartItem);
-router.delete("/cart/:itemId", isAuth, removeCartItem);
+router.get("/all", isAuth, getCart);
+router.post("/create", isAuth, addToCart);
+router.put("/:itemId", isAuth, updateCartItem);
+router.delete("/:itemId", isAuth, removeCartItem);
 
 export default router;

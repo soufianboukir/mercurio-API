@@ -1,6 +1,6 @@
 import type { Response } from "express";
 import { supabase as supabaseAdmin } from "../config/supabase-admin.ts";
-import authRequest from "../interfaces/authRequest.ts";
+import type authRequest from "../interfaces/authRequest.ts";
 
 export const getCart = async (req: authRequest, res: Response) => {
   try {
@@ -8,7 +8,7 @@ export const getCart = async (req: authRequest, res: Response) => {
     if (!userId) return res.status(401).json({ error: "Unauthorized" });
 
     const { data, error } = await supabaseAdmin
-      .from("cart_items")
+      .from("cart")
       .select("id, quantity, product:products(*)")
       .eq("profile_id", userId);
 
@@ -29,7 +29,7 @@ export const addToCart = async (req: authRequest, res: Response) => {
     if (!product_id || !quantity) return res.status(400).json({ error: "Missing fields" });
 
     const { data: existing } = await supabaseAdmin
-      .from("cart_items")
+      .from("cart")
       .select("*")
       .eq("profile_id", userId)
       .eq("product_id", product_id)
@@ -37,7 +37,7 @@ export const addToCart = async (req: authRequest, res: Response) => {
 
     if (existing) {
       const { data, error } = await supabaseAdmin
-        .from("cart_items")
+        .from("cart")
         .update({ quantity: existing.quantity + quantity })
         .eq("id", existing.id)
         .select()
@@ -48,7 +48,7 @@ export const addToCart = async (req: authRequest, res: Response) => {
     }
 
     const { data, error } = await supabaseAdmin
-      .from("cart_items")
+      .from("cart")
       .insert([{ profile_id: userId, product_id, quantity }])
       .select()
       .single();
@@ -70,7 +70,7 @@ export const updateCartItem = async (req: authRequest, res: Response) => {
     if (!userId) return res.status(401).json({ error: "Unauthorized" });
 
     const { data, error } = await supabaseAdmin
-      .from("cart_items")
+      .from("cart")
       .update({ quantity })
       .eq("id", itemId)
       .eq("profile_id", userId)
@@ -95,7 +95,7 @@ export const removeCartItem = async (req: authRequest, res: Response) => {
     if (!userId) return res.status(401).json({ error: "Unauthorized" });
 
     const { error } = await supabaseAdmin
-      .from("cart_items")
+      .from("cart")
       .delete()
       .eq("id", itemId)
       .eq("profile_id", userId);
