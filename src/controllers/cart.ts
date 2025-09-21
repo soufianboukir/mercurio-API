@@ -4,7 +4,7 @@ import type authRequest from "../interfaces/authRequest.ts";
 
 export const getCart = async (req: authRequest, res: Response) => {
   try {
-    const userId = req.user?.id; 
+    const userId = req.user?.id;
     if (!userId) return res.status(401).json({ error: "Unauthorized" });
 
     const { data, error } = await supabaseAdmin

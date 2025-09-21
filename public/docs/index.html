@@ -157,7 +157,6 @@ Response: { "access_token":"...", "user":{ "id":"..","email":".." }}</pre
     </p>
     <pre>{ "message":"Category deleted successfully" }</pre>
 
-
     <!-- CART -->
     <h2>Cart</h2>
 
@@ -188,7 +187,9 @@ Response: { "access_token":"...", "user":{ "id":"..","email":".." }}</pre
     Response: { "id": 12, "user_id": "user123", "product_id": 68, "quantity": 3 }
     </pre>
 
-    <p><span class="method DELETE">DELETE</span><span class="endpoint">/cart/:itemId</span> (auth)</p>
+    <p>
+      <span class="method DELETE">DELETE</span><span class="endpoint">/cart/:itemId</span> (auth)
+    </p>
     <pre>
     { "message": "Item removed from cart" }
     </pre>

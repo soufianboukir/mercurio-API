@@ -2,7 +2,6 @@ import { Router } from "express";
 import { addToCart, getCart, removeCartItem, updateCartItem } from "../controllers/cart.ts";
 import { isAuth } from "../middlewares/isAuth.ts";
 
-
 const router = Router();
 
 router.get("/all", isAuth, getCart);
