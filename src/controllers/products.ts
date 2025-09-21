@@ -44,8 +44,6 @@ export const getProductById = async (req: Request, res: Response) => {
   }
 };
 
-// POST /products (admin only)
-
 export const createProduct = async (req: Request, res: Response) => {
   try {
     const { name, description, price, stock, category_id, image } = req.body;
@@ -64,7 +62,6 @@ export const createProduct = async (req: Request, res: Response) => {
   }
 };
 
-// PUT /products/:id (admin only)
 export const updateProduct = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
@@ -86,7 +83,6 @@ export const updateProduct = async (req: Request, res: Response) => {
   }
 };
 
-// DELETE /products/:id (admin only)
 export const deleteProduct = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
@@ -101,7 +97,6 @@ export const deleteProduct = async (req: Request, res: Response) => {
   }
 };
 
-// GET /products/category/:categoryId?page=1
 export const getProductsByCategory = async (req: Request, res: Response) => {
   try {
     const { categoryId } = req.params;
@@ -128,7 +123,6 @@ export const getProductsByCategory = async (req: Request, res: Response) => {
   }
 };
 
-// GET /products/search?query=keyword&page=1
 export const searchProducts = async (req: Request, res: Response) => {
   try {
     const query = (req.query.query as string) || "";
