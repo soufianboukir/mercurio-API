@@ -156,5 +156,42 @@ Response: { "access_token":"...", "user":{ "id":"..","email":".." }}</pre
       <span class="method DELETE">DELETE</span><span class="endpoint">/categories/:id</span> (Admin)
     </p>
     <pre>{ "message":"Category deleted successfully" }</pre>
+
+    <!-- CART -->
+    <h2>Cart</h2>
+
+    <p><span class="method GET">GET</span><span class="endpoint">/cart/all</span> (auth)</p>
+    <pre>
+    [
+      {
+        "id": 12,
+        "quantity": 2,
+        "product": {
+          "id": 68,
+          "name": "Wireless Headphones",
+          "price": 8.99
+        }
+      }
+    ]
+    </pre>
+
+    <p><span class="method POST">POST</span><span class="endpoint">/cart/create</span> (auth)</p>
+    <pre>
+    Request: { "product_id": 68, "quantity": 1 }
+    Response: { "id": 12, "user_id": "user123", "product_id": 68, "quantity": 1 }
+    </pre>
+
+    <p><span class="method PUT">PUT</span><span class="endpoint">/cart/:itemId</span> (auth)</p>
+    <pre>
+    Request: { "quantity": 3 }
+    Response: { "id": 12, "user_id": "user123", "product_id": 68, "quantity": 3 }
+    </pre>
+
+    <p>
+      <span class="method DELETE">DELETE</span><span class="endpoint">/cart/:itemId</span> (auth)
+    </p>
+    <pre>
+    { "message": "Item removed from cart" }
+    </pre>
   </body>
 </html>
