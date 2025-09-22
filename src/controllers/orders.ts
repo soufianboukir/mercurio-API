@@ -4,17 +4,14 @@ import type authRequest from "../interfaces/authRequest.ts";
 
 export const createOrder = async (req: authRequest, res: Response) => {
   try {
-    const userId = req.user?.id; 
-    const { items } = req.body; 
+    const userId = req.user?.id;
+    const { items } = req.body;
 
     if (!items || !Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ error: "Order items required" });
     }
 
-    const totalPrice = items.reduce(
-      (sum, item) => sum + item.price * item.quantity,
-      0
-    );
+    const totalPrice = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
     const { data: order, error: orderError } = await supabaseAdmin
       .from("orders")
@@ -24,24 +21,22 @@ export const createOrder = async (req: authRequest, res: Response) => {
 
     if (orderError) throw orderError;
 
-    const orderItems = items.map((i) => ({
+    const orderItems = items.map(i => ({
       order_id: order.id,
       product_id: i.product_id,
       quantity: i.quantity,
       price: Math.round(i.price * 100),
     }));
 
-    const { error: itemsError } = await supabaseAdmin
-      .from("order_items")
-      .insert(orderItems);
+    const { error: itemsError } = await supabaseAdmin.from("order_items").insert(orderItems);
 
     if (itemsError) throw itemsError;
 
     res.status(201).json({ ...order, items: orderItems });
-  } catch (err){
+  } catch (err) {
     console.log(err);
-    
-    res.status(500).json({ error: "Server error"+ err });
+
+    res.status(500).json({ error: "Server error" + err });
   }
 };
 
@@ -91,7 +86,6 @@ export const getOrderById = async (req: authRequest, res: Response) => {
 
 export const updateOrderStatus = async (req: authRequest, res: Response) => {
   try {
-
     const { id } = req.params;
     const { status } = req.body;
 
