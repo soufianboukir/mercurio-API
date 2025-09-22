@@ -4,6 +4,7 @@ import userRoutes from "./routes/user.ts";
 import productRoutes from "./routes/products.ts";
 import categorieRoutes from "./routes/categories.ts";
 import cartRoutes from "./routes/cart.ts";
+import ordersRoutes from "./routes/orders.ts";
 
 import path from "path";
 
@@ -19,5 +20,6 @@ app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/categories", categorieRoutes);
 app.use("/api/cart", cartRoutes);
+app.use("/api/orders", ordersRoutes);
 
 export default app;

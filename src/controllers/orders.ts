@@ -7,7 +7,6 @@ export const createOrder = async (req: authRequest, res: Response) => {
     const userId = req.user?.id; 
     const { items } = req.body; 
 
-    if (!userId) return res.status(401).json({ error: "Unauthorized" });
     if (!items || !Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ error: "Order items required" });
     }
@@ -19,7 +18,7 @@ export const createOrder = async (req: authRequest, res: Response) => {
 
     const { data: order, error: orderError } = await supabaseAdmin
       .from("orders")
-      .insert([{ user_id: userId, status: "pending", total_price: totalPrice }])
+      .insert([{ profile_id: userId, status: "pending", total: totalPrice }])
       .select()
       .single();
 
@@ -29,7 +28,7 @@ export const createOrder = async (req: authRequest, res: Response) => {
       order_id: order.id,
       product_id: i.product_id,
       quantity: i.quantity,
-      price: i.price,
+      price: Math.round(i.price * 100),
     }));
 
     const { error: itemsError } = await supabaseAdmin
@@ -39,8 +38,10 @@ export const createOrder = async (req: authRequest, res: Response) => {
     if (itemsError) throw itemsError;
 
     res.status(201).json({ ...order, items: orderItems });
-  } catch {
-    res.status(500).json({ error: "Server error" });
+  } catch (err){
+    console.log(err);
+    
+    res.status(500).json({ error: "Server error"+ err });
   }
 };
 
@@ -52,7 +53,7 @@ export const getOrders = async (req: authRequest, res: Response) => {
     const { data, error } = await supabaseAdmin
       .from("orders")
       .select("*, order_items(*, product:products(*))")
-      .eq("user_id", userId)
+      .eq("profile_id", userId)
       .order("created_at", { ascending: false });
 
     if (error) throw error;
@@ -78,8 +79,7 @@ export const getOrderById = async (req: authRequest, res: Response) => {
 
     if (error) throw error;
 
-    // Ensure user owns the order (unless admin)
-    if (data.user_id !== userId && req.user?.role !== "admin") {
+    if (data.profile_id !== userId && req.user?.role !== "admin") {
       return res.status(403).json({ error: "Forbidden" });
     }
 
@@ -91,9 +91,6 @@ export const getOrderById = async (req: authRequest, res: Response) => {
 
 export const updateOrderStatus = async (req: authRequest, res: Response) => {
   try {
-    if (req.user?.role !== "admin") {
-      return res.status(403).json({ error: "Admin only" });
-    }
 
     const { id } = req.params;
     const { status } = req.body;
@@ -119,8 +116,6 @@ export const cancelOrder = async (req: authRequest, res: Response) => {
     const userId = req.user?.id;
     const { id } = req.params;
 
-    if (!userId) return res.status(401).json({ error: "Unauthorized" });
-
     const { data: order, error: getError } = await supabaseAdmin
       .from("orders")
       .select("*")
@@ -130,7 +125,7 @@ export const cancelOrder = async (req: authRequest, res: Response) => {
     if (getError) throw getError;
     if (!order) return res.status(404).json({ error: "Order not found" });
 
-    if (order.user_id !== userId && req.user?.role !== "admin") {
+    if (order.profile_id !== userId && req.user?.role !== "admin") {
       return res.status(403).json({ error: "Forbidden" });
     }
 
