@@ -194,7 +194,7 @@ Response: { "access_token":"...", "user":{ "id":"..","email":".." }}</pre
     { "message": "Item removed from cart" }
     </pre>
 
-    <!-- CART -->
+    <!-- ORDERS -->
     <h2>Orders</h2>
 
     <p><span class="method GET">GET</span><span class="endpoint">/orders/all</span> (auth)</p>
@@ -307,6 +307,74 @@ Response: { "access_token":"...", "user":{ "id":"..","email":".." }}</pre
       {
           "message": "Order cancelled"
       }
+    </pre>
+
+    <!-- WISHLIST -->
+    <h2>Wishlist</h2>
+
+    <p><span class="method GET">GET</span><span class="endpoint">/wishlist/all</span> (auth)</p>
+    <pre>
+      [
+        {
+            "id": 1,
+            "product": {
+                "id": 74,
+                "name": "Small Concrete Car",
+                "image": "https://loremflickr.com/2711/1009/product?lock=8788736141285686",
+                "price": 45.89,
+                "stock": 48,
+                "created_at": "2025-08-24T13:27:54.733+00:00",
+                "category_id": 26,
+                "description": "The Team-oriented mobile hub Towels offers reliable performance and worthless design"
+            }
+        },
+        {
+            "id": 2,
+            "product": {
+                "id": 75,
+                "name": "Sleek Ceramic Bacon",
+                "image": "https://loremflickr.com/606/2176/product?lock=7652425830551299",
+                "price": 288.09,
+                "stock": 10,
+                "created_at": "2025-08-24T13:27:55.237+00:00",
+                "category_id": 26,
+                "description": "The indigo Car combines Honduras aesthetics with Cobalt-based durability"
+            }
+        }
+    ]
+    </pre>
+
+    <p>
+      <span class="method POST">POST</span><span class="endpoint">/wishlist/create</span> (auth)
+    </p>
+    <pre>
+    Request: {
+      "product_id":"76"
+  }
+  
+    Response: {
+      "id": 3,
+      "product": {
+          "id": 76,
+          "name": "Intelligent Steel Fish",
+          "image": "https://loremflickr.com/756/2109/product?lock=3638821534937501",
+          "price": 47.25,
+          "stock": 96,
+          "created_at": "2025-08-24T13:27:56.477+00:00",
+          "category_id": 24,
+          "description": "Discover the proud new Pizza with an exciting mix of Concrete ingredients"
+      }
+  }
+    </pre>
+
+    <p>
+      <span class="method DELETE">DELETE</span
+      ><span class="endpoint">/wishlist/:itemId</span> (auth)
+    </p>
+    <pre>
+    Response: {
+        "message": "Item removed from wishlist"
+    }  
     </pre>
   </body>
 </html>

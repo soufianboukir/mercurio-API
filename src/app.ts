@@ -5,6 +5,7 @@ import productRoutes from "./routes/products.ts";
 import categorieRoutes from "./routes/categories.ts";
 import cartRoutes from "./routes/cart.ts";
 import ordersRoutes from "./routes/orders.ts";
+import wishlistRoutes from "./routes/wishlist.ts";
 
 import path from "path";
 
@@ -21,5 +22,6 @@ app.use("/api/products", productRoutes);
 app.use("/api/categories", categorieRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/orders", ordersRoutes);
+app.use("/api/wishlist", wishlistRoutes);
 
 export default app;
