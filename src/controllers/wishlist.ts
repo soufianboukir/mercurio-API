@@ -60,7 +60,6 @@ export const removeFromWishlist = async (req: authRequest, res: Response) => {
     const userId = req.user?.id;
     const { itemId } = req.params;
 
-
     const { data: item, error: getError } = await supabaseAdmin
       .from("wishlist")
       .select("*")
@@ -73,10 +72,7 @@ export const removeFromWishlist = async (req: authRequest, res: Response) => {
       return res.status(403).json({ error: "Forbidden" });
     }
 
-    const { error } = await supabaseAdmin
-      .from("wishlist")
-      .delete()
-      .eq("id", itemId);
+    const { error } = await supabaseAdmin.from("wishlist").delete().eq("id", itemId);
 
     if (error) throw error;
 
