@@ -1,6 +1,11 @@
 import { Router } from "express";
 import { isAuth } from "../middlewares/isAuth.ts";
-import { addProductReview, deleteReview, getProductReviews, updateReview } from "../controllers/reviews.ts";
+import {
+  addProductReview,
+  deleteReview,
+  getProductReviews,
+  updateReview,
+} from "../controllers/reviews.ts";
 
 const router = Router();
 
@@ -10,5 +15,3 @@ router.put("/:id", isAuth, updateReview);
 router.delete("/:id", isAuth, deleteReview);
 
 export default router;
-
-

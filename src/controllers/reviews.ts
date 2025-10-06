@@ -1,8 +1,6 @@
-
 import type { Response } from "express";
 import { supabase as supabaseAdmin } from "../config/supabase-admin.ts";
 import type authRequest from "../interfaces/authRequest.ts";
-
 
 export const getProductReviews = async (req: authRequest, res: Response) => {
   try {
@@ -10,21 +8,23 @@ export const getProductReviews = async (req: authRequest, res: Response) => {
 
     const { data, error } = await supabaseAdmin
       .from("reviews")
-      .select(`
+      .select(
+        `
         id,
         comment,
         rating,
         profile_id,
         created_at,
         profile:profiles(full_name, image)
-      `)
+      `,
+      )
       .eq("product_id", productId)
       .order("created_at", { ascending: false });
 
     if (error) throw error;
 
     res.json(data);
-  } catch{
+  } catch {
     res.status(500).json({ error: "Server error" });
   }
 };
@@ -52,9 +52,7 @@ export const addProductReview = async (req: authRequest, res: Response) => {
 
     const { data, error } = await supabaseAdmin
       .from("reviews")
-      .insert([
-        { product_id: productId, profile_id: userId, comment, rating },
-      ])
+      .insert([{ product_id: productId, profile_id: userId, comment, rating }])
       .select("id, comment, rating, created_at, profile_id, product_id")
       .single();
 
@@ -65,7 +63,6 @@ export const addProductReview = async (req: authRequest, res: Response) => {
     res.status(500).json({ error: "Server error" });
   }
 };
-
 
 export const updateReview = async (req: authRequest, res: Response) => {
   try {
@@ -81,8 +78,7 @@ export const updateReview = async (req: authRequest, res: Response) => {
 
     if (getError) throw getError;
     if (!review) return res.status(404).json({ error: "Review not found" });
-    if (review.profile_id !== userId)
-      return res.status(403).json({ error: "Forbidden" });
+    if (review.profile_id !== userId) return res.status(403).json({ error: "Forbidden" });
 
     const { data, error } = await supabaseAdmin
       .from("reviews")
@@ -94,11 +90,10 @@ export const updateReview = async (req: authRequest, res: Response) => {
     if (error) throw error;
 
     res.json(data);
-  } catch{
+  } catch {
     res.status(500).json({ error: "Server error" });
   }
 };
-
 
 export const deleteReview = async (req: authRequest, res: Response) => {
   try {
