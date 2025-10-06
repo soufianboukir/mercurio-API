@@ -16,7 +16,7 @@ export const getProductReviews = async (req: authRequest, res: Response) => {
         rating,
         profile_id,
         created_at,
-        profile:profiles(username, avatar_url)
+        profile:profiles(full_name, image)
       `)
       .eq("product_id", productId)
       .order("created_at", { ascending: false });
@@ -24,7 +24,7 @@ export const getProductReviews = async (req: authRequest, res: Response) => {
     if (error) throw error;
 
     res.json(data);
-  } catch {
+  } catch{
     res.status(500).json({ error: "Server error" });
   }
 };
@@ -32,8 +32,7 @@ export const getProductReviews = async (req: authRequest, res: Response) => {
 export const addProductReview = async (req: authRequest, res: Response) => {
   try {
     const userId = req.user?.id;
-    const { id: productId } = req.params;
-    const { comment, rating } = req.body;
+    const { comment, rating, productId } = req.body;
 
     if (!comment || typeof rating !== "number") {
       return res.status(400).json({ error: "Comment and numeric rating required" });

@@ -5,7 +5,7 @@ import { addProductReview, deleteReview, getProductReviews, updateReview } from 
 
 const router = Router();
 
-router.get("/all", getProductReviews);
+router.get("/:id", getProductReviews);
 router.post("/add", isAuth, addProductReview);
 router.put("/:id", isAuth, updateReview);
 router.delete("/:id", isAdmin, deleteReview);
