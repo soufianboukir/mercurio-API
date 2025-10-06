@@ -94,7 +94,7 @@ export const updateReview = async (req: authRequest, res: Response) => {
     if (error) throw error;
 
     res.json(data);
-  } catch {
+  } catch{
     res.status(500).json({ error: "Server error" });
   }
 };
@@ -103,7 +103,7 @@ export const updateReview = async (req: authRequest, res: Response) => {
 export const deleteReview = async (req: authRequest, res: Response) => {
   try {
     const userId = req.user?.id;
-    const userRole = req.user?.role; // assuming JWT payload includes role
+    const userRole = req.user?.role;
     const { id } = req.params;
 
     const { data: review, error: getError } = await supabaseAdmin
