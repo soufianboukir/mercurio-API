@@ -308,8 +308,6 @@ Response: { "access_token":"...", "user":{ "id":"..","email":".." }}</pre
           "message": "Order cancelled"
       }
     </pre>
-
-    <!-- WISHLIST -->
     <h2>Wishlist</h2>
 
     <p><span class="method GET">GET</span><span class="endpoint">/wishlist/all</span> (auth)</p>
@@ -374,6 +372,73 @@ Response: { "access_token":"...", "user":{ "id":"..","email":".." }}</pre
     <pre>
     Response: {
         "message": "Item removed from wishlist"
+    }  
+    </pre>
+
+
+
+    <h2>Reviews</h2>
+
+    <p><span class="method GET">GET</span><span class="endpoint">/reviews/:id</span> </p>
+    <pre>
+      [
+        {
+            "id": 1,
+            "comment": "That's great!!",
+            "rating": 5,
+            "profile_id": "b046557c-3d34-4d5d-8999-f09c0a0dfc53",
+            "created_at": "2025-10-06T18:09:45.400459+00:00",
+            "profile": {
+                "image": "https://randomuser.me/api/portraits/men/25.jpg",
+                "full_name": "Clara Nienow"
+            }
+        }
+    ]
+    </pre>
+
+    <p>
+      <span class="method POST">POST</span><span class="endpoint">/reviews/add</span> (auth)
+    </p>
+    <pre>
+    Request: {
+      "product_id":68,
+      "rating":4,
+      "comment":"bad"
+  }
+  
+    Response: {
+        "id": 1,
+        "comment": "bad",
+        "rating": 4,
+        "created_at": "2025-10-06T18:09:45.400459+00:00",
+  }
+    </pre>
+
+
+    <p>
+      <span class="method PUT">PUT</span><span class="endpoint">/reviews/:id</span> (auth)
+    </p>
+    <pre>
+    Request: {
+      "rating":8,
+      "comment":"great"
+  }
+  
+  Response: {
+    "id": 1,
+    "comment": "great",
+    "rating": 8,
+    "created_at": "2025-10-06T18:09:45.400459+00:00",
+}
+    </pre>
+
+    <p>
+      <span class="method DELETE">DELETE</span
+      ><span class="endpoint">/reviews/:id</span> (auth, admin)
+    </p>
+    <pre>
+    Response: {
+        "message": "Review deleted successfully"
     }  
     </pre>
   </body>
