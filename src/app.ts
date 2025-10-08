@@ -6,6 +6,7 @@ import categorieRoutes from "./routes/categories.ts";
 import cartRoutes from "./routes/cart.ts";
 import ordersRoutes from "./routes/orders.ts";
 import wishlistRoutes from "./routes/wishlist.ts";
+import reviewsRoutes from "./routes/reviews.ts";
 
 import path from "path";
 
@@ -23,5 +24,6 @@ app.use("/api/categories", categorieRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/orders", ordersRoutes);
 app.use("/api/wishlist", wishlistRoutes);
+app.use("/api/reviews", reviewsRoutes);
 
 export default app;
