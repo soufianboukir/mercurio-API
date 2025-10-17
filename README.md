@@ -92,11 +92,6 @@ The project is structured for scalability and clean code separation, following M
 - `PUT /reviews/:id` → Update a review (author only)
 - `DELETE /reviews/:id` → Delete a review (author or admin)
 
-## Admin Dashboard Extras
-
-- `GET /dashboard/stats` → Get sales, user, and product statistics
-- `GET /dashboard/orders` → List all orders
-- `GET /dashboard/products/low-stock` → Get products with low stock
 
 ➡️ Full list available in [docs/endpoints.md](./src/docs/endpoints.md)
 
