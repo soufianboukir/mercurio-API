@@ -16,7 +16,7 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "@supabase/supabase-js": "^2.75.0",
+    "@supabase/supabase-js": "^2.76.0",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "faker": "^6.6.6",
