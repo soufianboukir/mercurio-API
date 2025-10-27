@@ -92,7 +92,6 @@ The project is structured for scalability and clean code separation, following M
 - `PUT /reviews/:id` → Update a review (author only)
 - `DELETE /reviews/:id` → Delete a review (author or admin)
 
-
 ➡️ Full list available in [docs/endpoints.md](./src/docs/endpoints.md)
 
 ---
