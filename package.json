@@ -16,7 +16,7 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "@supabase/supabase-js": "^2.76.1",
+    "@supabase/supabase-js": "^2.78.0",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "faker": "^6.6.6",
@@ -26,15 +26,15 @@
     "serverless-http": "^4.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.38.0",
+    "@eslint/js": "^9.39.0",
     "@faker-js/faker": "^10.0.0",
     "@types/bcryptjs": "^3.0.0",
     "@types/cors": "^2.8.19",
-    "@types/express": "^5.0.4",
+    "@types/express": "^5.0.5",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/mongoose": "^5.11.97",
-    "eslint": "^9.38.0",
-    "globals": "^16.5.0",
+    "eslint": "^9.39.0",
+    "globals": "^16.4.0",
     "jiti": "^2.6.1",
     "prettier": "^3.6.2",
     "ts-node": "^10.9.2",
