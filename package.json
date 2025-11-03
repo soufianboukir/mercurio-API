@@ -30,7 +30,7 @@
     "@faker-js/faker": "^10.0.0",
     "@types/bcryptjs": "^3.0.0",
     "@types/cors": "^2.8.19",
-    "@types/express": "^5.0.4",
+    "@types/express": "^5.0.5",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/mongoose": "^5.11.97",
     "eslint": "^9.38.0",
