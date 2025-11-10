@@ -21,7 +21,7 @@
     "express": "^5.1.0",
     "faker": "^6.6.6",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.19.2",
+    "mongoose": "^8.19.3",
     "nodemon": "^3.1.10",
     "serverless-http": "^4.0.0"
   },
