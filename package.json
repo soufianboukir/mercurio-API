@@ -33,7 +33,7 @@
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/mongoose": "^5.11.97",
-    "eslint": "^10.0.0",
+    "eslint": "^10.0.1",
     "globals": "^17.3.0",
     "jiti": "^2.6.1",
     "prettier": "^3.8.1",
